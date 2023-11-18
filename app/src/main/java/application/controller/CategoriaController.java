@@ -32,6 +32,7 @@ public class CategoriaController {
     public String insert(@RequestParam("nome") String nome) {
         Categoria categoria = new Categoria();
         categoria.setNome(nome);
+        
         categoriaRepo.save(categoria);
         return "redirect:/categoria/list";
     }

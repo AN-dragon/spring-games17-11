@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-    <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
         <!DOCTYPE html>
         <html lang="pt-br">
 
@@ -25,8 +25,8 @@
                         <label for="categoria">Categoria:</label>
                         <select name="categoria" class="form-select">
                             <c:forEach var="c" items="${categorias}">
-                            </c:forEach>.
-                            <option ${jogo.categoria.id == c.id ? "selected" : "" } value="${c.id}">${c.nome}</option>
+                                <option ${jogo.categoria.id == c.id ? "selected" : ""} value="${c.id}">${c.nome}</option>
+                            </c:forEach>
                         </select>
                     </div>
 
@@ -48,7 +48,7 @@
                     <a href="/jogo/list" class="btn btn-primary">Voltar</a>
                     <button type="submit" class="btn btn-success">Salvar</button>
                 </form>
-                
+
             </div>
         </body>
         </html>

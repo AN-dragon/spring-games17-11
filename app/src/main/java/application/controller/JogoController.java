@@ -85,25 +85,25 @@ public class JogoController {
             @RequestParam("id") long id,
             @RequestParam("titulo") String titulo,
             @RequestParam("categoria") long idCategoria,
-            @RequestParam("plataformas ") long[] idsPlataformas) {
+            @RequestParam("plataformas") long[] idsPlataformas) {
 
         Optional<Jogo> jogo = jogoRepo.findById(id);
 
         if (jogo.isPresent()) {
-            jogo.get().setTitulo(titulo);
-            jogo.get().setCategoria(categoriaRepo.findById(idCategoria).get());
-            Set<Plataforma> updatePlataforma = new HashSet<>();
+                jogo.get().setTitulo(titulo);
+                jogo.get().setCategoria(categoriaRepo.findById(idCategoria).get());
+                Set<Plataforma> updatePlataforma = new HashSet<>();
 
-            for (long p : idsPlataformas) {
-                Optional<Plataforma> plataforma = plataformaRepo.findById(p);
+                for (long p : idsPlataformas) {
+                    Optional<Plataforma> plataforma = plataformaRepo.findById(p);
 
-                if (plataforma.isPresent()) {
-                    updatePlataforma.add(plataforma.get());
+                    if (plataforma.isPresent()) {
+                        updatePlataforma.add(plataforma.get());
+                    }
                 }
+                jogo.get().setPlataformas(updatePlataforma);
+                jogoRepo.save(jogo.get());
             }
-            jogo.get().setPlataformas(updatePlataforma);
-            jogoRepo.save(jogo.get());
-        }
         return "redirect:/jogo/list";
     }
 
